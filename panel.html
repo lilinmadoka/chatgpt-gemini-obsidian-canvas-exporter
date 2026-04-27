@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChatGPT / Gemini 导出到 Obsidian</title>
+    <link rel="stylesheet" href="panel.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero-card">
+        <div>
+          <p class="eyebrow">ChatGPT / Gemini → Obsidian 导出器</p>
+          <h1 id="conversation-title" class="hero-title">正在读取当前对话…</h1>
+          <p id="conversation-meta" class="hero-meta">请稍候，正在从当前对话页面提取轮次、图片与结构信息。</p>
+        </div>
+        <div class="hero-actions">
+          <button id="refresh-button" class="secondary-button" type="button">刷新轮次</button>
+          <button id="export-folder-button" class="primary-button" type="button">导出到 Obsidian 文件夹</button>
+          <button id="download-button" class="secondary-button" type="button">下载导出文件</button>
+        </div>
+      </header>
+
+      <section class="options-grid">
+        <article class="option-card">
+          <h2 class="section-title">导出配置</h2>
+          <label class="field-label" for="folder-name-input">对话目录名</label>
+          <input id="folder-name-input" class="text-input" type="text" placeholder="例如：我的一次重要对话" />
+
+          <div class="field-label">导出位置</div>
+          <div class="segmented-control" role="radiogroup" aria-label="导出位置">
+            <label class="segmented-option">
+              <input id="export-location-vault-root" name="export-location-mode" type="radio" value="vault-root" checked />
+              <span>选择仓库根目录</span>
+            </label>
+            <label class="segmented-option">
+              <input id="export-location-target-folder" name="export-location-mode" type="radio" value="target-folder" />
+              <span>选择目标子文件夹</span>
+            </label>
+          </div>
+
+          <label id="vault-path-label" class="field-label" for="vault-path-input">目标子路径</label>
+          <input id="vault-path-input" class="text-input" type="text" placeholder="例如：计算物理；留空表示仓库根目录" />
+          <p id="vault-path-help" class="inline-help">如果选择仓库根目录，这里填写导出到 Obsidian 内的哪个子路径。</p>
+          <div id="vault-path-history" class="path-history" aria-live="polite"></div>
+
+          <label class="checkbox-row">
+            <input id="include-overview-checkbox" type="checkbox" checked />
+            <span>生成总览笔记</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input id="include-canvas-checkbox" type="checkbox" checked />
+            <span>生成 Canvas 画布</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input id="include-style-checkbox" type="checkbox" checked />
+            <span>一并写入 Obsidian 样式文件</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input id="include-images-checkbox" type="checkbox" checked />
+            <span>导出图片附件，并在笔记中保留原来的出现位置</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input id="compress-images-checkbox" type="checkbox" checked />
+            <span>尽量压缩图片体积（优先转为 WebP）</span>
+          </label>
+
+          <p class="option-help">“导出到 Obsidian 文件夹”建议直接选择你的 Obsidian 仓库根目录，这样样式文件会自动写入到 <code>.obsidian/snippets</code>。</p>
+        </article>
+
+        <article class="option-card">
+          <h2 class="section-title">当前统计</h2>
+          <div class="stats-grid stats-grid-four">
+            <div class="stat-box">
+              <div id="round-count" class="stat-value">0</div>
+              <div class="stat-label">已识别轮次</div>
+            </div>
+            <div class="stat-box">
+              <div id="selected-count" class="stat-value">0</div>
+              <div class="stat-label">已选轮次</div>
+            </div>
+            <div class="stat-box">
+              <div id="message-count" class="stat-value">0</div>
+              <div class="stat-label">底层消息</div>
+            </div>
+            <div class="stat-box">
+              <div id="image-count" class="stat-value">0</div>
+              <div class="stat-label">图片附件</div>
+            </div>
+          </div>
+          <p id="status-banner" class="status-banner" aria-live="polite">等待提取当前对话。</p>
+        </article>
+      </section>
+
+      <section class="list-toolbar">
+        <div>
+          <h2 class="section-title">轮次选择</h2>
+          <p class="toolbar-subtitle">每一张卡片对应一轮“用户提问 → 模型回复”。卡片标题会直接使用该轮的用户问题，导出后每一轮会成为一个单独笔记节点。</p>
+        </div>
+        <div class="toolbar-buttons">
+          <button id="select-all-button" class="ghost-button" type="button">全选</button>
+          <button id="clear-all-button" class="ghost-button" type="button">清空</button>
+          <button id="invert-selection-button" class="ghost-button" type="button">反选</button>
+        </div>
+      </section>
+
+      <section id="round-list" class="round-list" aria-live="polite"></section>
+    </div>
+
+    <template id="round-card-template">
+      <article class="round-card">
+        <label class="round-checkbox-wrap">
+          <input class="round-checkbox" type="checkbox" />
+          <span class="round-index"></span>
+        </label>
+        <div class="round-content">
+          <h3 class="round-title"></h3>
+          <p class="round-prompt"></p>
+          <p class="round-answer"></p>
+          <div class="round-meta"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="panel.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Archives / release artifacts
+*.zip
+*.crx
+*.pem
+
+# Dependency and cache directories
+node_modules/
+.cache/
+.npm-cache/
+dist/
+build/
+
+# Editor files
+.vscode/
+.idea/

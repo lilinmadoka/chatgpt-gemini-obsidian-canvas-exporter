@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChatGPT / Gemini 导出到 Obsidian</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <h1 class="popup-title">ChatGPT / Gemini → Obsidian</h1>
+      <p class="popup-text">
+        从当前对话页打开完整导出面板，再按轮次勾选需要保存的内容。
+      </p>
+      <button id="open-panel-button" class="primary-button" type="button">
+        打开导出面板
+      </button>
+      <p id="status-text" class="status-text" aria-live="polite"></p>
+      <p class="hint-text">
+        请先把浏览器标签页切到 ChatGPT 或 Gemini 的具体对话页面，再点击上面的按钮。
+      </p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

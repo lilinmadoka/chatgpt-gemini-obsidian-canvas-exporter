@@ -1,0 +1,772 @@
+/* 给页面设置基础背景和字体。 */
+:root {
+  /* 定义主背景色。 */
+  --page-bg: #0b1020;
+  /* 定义卡片背景色。 */
+  --card-bg: #111827;
+  /* 定义次级卡片背景色。 */
+  --card-bg-soft: #172033;
+  /* 定义主文字颜色。 */
+  --text-main: #f9fafb;
+  /* 定义次要文字颜色。 */
+  --text-soft: #9ca3af;
+  /* 定义强调绿色。 */
+  --brand: #10a37f;
+  /* 定义强调绿色悬停态。 */
+  --brand-hover: #12b48c;
+  /* 定义边框颜色。 */
+  --line: rgba(255, 255, 255, 0.08);
+  /* 定义投影样式。 */
+  --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+/* 设置整个页面的基础样式。 */
+html,
+body {
+  /* 让页面高度至少铺满视口。 */
+  min-height: 100%;
+  /* 去掉默认外边距。 */
+  margin: 0;
+  /* 使用一致的系统字体栈。 */
+  font-family: Inter, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* 设置整体背景色。 */
+  background: radial-gradient(circle at top, #13203d 0%, var(--page-bg) 36%, #070b16 100%);
+  /* 设置默认文本颜色。 */
+  color: var(--text-main);
+}
+
+/* 控制页面最大宽度和留白。 */
+.page-shell {
+  /* 页面最大宽度，避免超宽显示难以阅读。 */
+  max-width: 1280px;
+  /* 让主体水平居中。 */
+  margin: 0 auto;
+  /* 设置页面内边距。 */
+  padding: 28px 24px 48px;
+  /* 使用纵向布局。 */
+  display: flex;
+  /* 设置主轴方向。 */
+  flex-direction: column;
+  /* 统一各区域间距。 */
+  gap: 20px;
+  /* 让盒模型更直观。 */
+  box-sizing: border-box;
+}
+
+/* 顶部主卡片。 */
+.hero-card {
+  /* 使用网格布局便于左右分区。 */
+  display: grid;
+  /* 定义左右两列的比例。 */
+  grid-template-columns: minmax(0, 1fr) auto;
+  /* 设置卡片内部间距。 */
+  gap: 20px;
+  /* 卡片背景。 */
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.88));
+  /* 添加细边框。 */
+  border: 1px solid var(--line);
+  /* 设置圆角。 */
+  border-radius: 22px;
+  /* 设置内边距。 */
+  padding: 24px;
+  /* 设置投影。 */
+  box-shadow: var(--shadow);
+}
+
+/* 顶部眉标题。 */
+.eyebrow {
+  /* 去掉默认外边距。 */
+  margin: 0 0 8px;
+  /* 使用较小字号。 */
+  font-size: 12px;
+  /* 强调字重。 */
+  font-weight: 700;
+  /* 增加字间距。 */
+  letter-spacing: 0.08em;
+  /* 统一大写观感。 */
+  text-transform: uppercase;
+  /* 使用品牌色。 */
+  color: #7dd3fc;
+}
+
+/* 主标题样式。 */
+.hero-title {
+  /* 去掉默认外边距。 */
+  margin: 0;
+  /* 设置较大的标题字号。 */
+  font-size: clamp(26px, 4vw, 38px);
+  /* 加强字重。 */
+  font-weight: 800;
+  /* 优化行高。 */
+  line-height: 1.2;
+}
+
+/* 顶部元信息文本。 */
+.hero-meta {
+  /* 与标题留出间距。 */
+  margin: 12px 0 0;
+  /* 设置中等字号。 */
+  font-size: 14px;
+  /* 使用较柔和的颜色。 */
+  color: var(--text-soft);
+  /* 提升行高。 */
+  line-height: 1.7;
+}
+
+/* 顶部右侧按钮区域。 */
+.hero-actions {
+  /* 使用纵向布局。 */
+  display: flex;
+  /* 主轴方向为竖直。 */
+  flex-direction: column;
+  /* 控制按钮间距。 */
+  gap: 12px;
+  /* 让按钮在容器顶部对齐。 */
+  align-self: start;
+}
+
+/* 统一按钮基础样式。 */
+.primary-button,
+.secondary-button,
+.ghost-button {
+  /* 去掉默认边框。 */
+  border: none;
+  /* 设置圆角。 */
+  border-radius: 14px;
+  /* 设置按钮内边距。 */
+  padding: 12px 16px;
+  /* 设置字号。 */
+  font-size: 14px;
+  /* 提高字重。 */
+  font-weight: 700;
+  /* 显示手型光标。 */
+  cursor: pointer;
+  /* 加入过渡动画。 */
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+/* 主按钮。 */
+.primary-button {
+  /* 使用品牌绿色背景。 */
+  background: var(--brand);
+  /* 使用白色文字。 */
+  color: #ffffff;
+}
+
+/* 主按钮悬停样式。 */
+.primary-button:hover {
+  /* 悬停时提亮。 */
+  background: var(--brand-hover);
+  /* 悬停时略微上浮。 */
+  transform: translateY(-1px);
+}
+
+/* 次按钮。 */
+.secondary-button {
+  /* 使用略浅的卡片底色。 */
+  background: var(--card-bg-soft);
+  /* 使用主文字色。 */
+  color: var(--text-main);
+  /* 添加边框以增强层次。 */
+  border: 1px solid var(--line);
+}
+
+/* 次按钮悬停。 */
+.secondary-button:hover {
+  /* 悬停时略微提亮。 */
+  background: #1f2a40;
+  /* 悬停时轻微上浮。 */
+  transform: translateY(-1px);
+}
+
+/* 幽灵按钮。 */
+.ghost-button {
+  /* 背景透明。 */
+  background: transparent;
+  /* 使用次级文字色。 */
+  color: var(--text-soft);
+  /* 加边框形成可点击感。 */
+  border: 1px solid var(--line);
+}
+
+/* 幽灵按钮悬停。 */
+.ghost-button:hover {
+  /* 悬停时使用柔和背景。 */
+  background: rgba(255, 255, 255, 0.05);
+  /* 提升文字亮度。 */
+  color: var(--text-main);
+}
+
+/* 禁用按钮状态。 */
+.primary-button:disabled,
+.secondary-button:disabled,
+.ghost-button:disabled {
+  /* 降低透明度表示不可用。 */
+  opacity: 0.55;
+  /* 禁止鼠标手型。 */
+  cursor: not-allowed;
+  /* 禁用状态不再位移。 */
+  transform: none;
+}
+
+/* 配置区使用双列布局。 */
+.options-grid {
+  /* 使用自适应网格。 */
+  display: grid;
+  /* 定义至少两列，但在窄屏可自动换行。 */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* 设置区块间距。 */
+  gap: 20px;
+}
+
+/* 通用选项卡片。 */
+.option-card {
+  /* 使用统一背景。 */
+  background: rgba(17, 24, 39, 0.92);
+  /* 边框样式。 */
+  border: 1px solid var(--line);
+  /* 圆角。 */
+  border-radius: 20px;
+  /* 内边距。 */
+  padding: 20px;
+  /* 投影。 */
+  box-shadow: var(--shadow);
+}
+
+/* 分区标题。 */
+.section-title {
+  /* 去掉默认外边距。 */
+  margin: 0 0 12px;
+  /* 字号。 */
+  font-size: 18px;
+  /* 字重。 */
+  font-weight: 700;
+}
+
+/* 字段标签。 */
+.field-label {
+  /* 作为块级元素独占一行。 */
+  display: block;
+  /* 增加下方间距。 */
+  margin-bottom: 8px;
+  /* 使用稍小字号。 */
+  font-size: 13px;
+  /* 使用辅助色。 */
+  color: var(--text-soft);
+}
+
+/* 文本输入框样式。 */
+.text-input {
+  /* 宽度占满容器。 */
+  width: 100%;
+  /* 让盒模型计算更合理。 */
+  box-sizing: border-box;
+  /* 设置圆角。 */
+  border-radius: 14px;
+  /* 设置边框。 */
+  border: 1px solid var(--line);
+  /* 输入框背景色。 */
+  background: #0f1727;
+  /* 文字颜色。 */
+  color: var(--text-main);
+  /* 内边距。 */
+  padding: 12px 14px;
+  /* 设置字号。 */
+  font-size: 14px;
+  /* 与下方控件留白。 */
+  margin-bottom: 14px;
+}
+
+/* 导出位置分段控件。 */
+.segmented-control {
+  /* 使用双列布局。 */
+  display: grid;
+  /* 两个选项等宽。 */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* 控制内部间距。 */
+  gap: 8px;
+  /* 与下方路径输入拉开距离。 */
+  margin-bottom: 14px;
+}
+
+/* 分段控件单个选项。 */
+.segmented-option {
+  /* 允许内部文字稳定居中。 */
+  display: flex;
+  /* 垂直居中。 */
+  align-items: center;
+  /* 横向居中。 */
+  justify-content: center;
+  /* 控件内间距。 */
+  gap: 8px;
+  /* 固定边框。 */
+  border: 1px solid var(--line);
+  /* 圆角与输入框保持一致。 */
+  border-radius: 14px;
+  /* 背景与输入框一致。 */
+  background: #0f1727;
+  /* 控制尺寸。 */
+  padding: 10px 12px;
+  /* 字号。 */
+  font-size: 13px;
+  /* 字重。 */
+  font-weight: 700;
+  /* 鼠标手型。 */
+  cursor: pointer;
+  /* 避免长文字撑破。 */
+  min-width: 0;
+}
+
+/* 选中态更明确。 */
+.segmented-option:has(input:checked) {
+  /* 使用品牌色边框。 */
+  border-color: rgba(16, 163, 127, 0.75);
+  /* 加一点底色。 */
+  background: rgba(16, 163, 127, 0.14);
+}
+
+/* 分段控件文本。 */
+.segmented-option span {
+  /* 允许小屏换行。 */
+  overflow-wrap: anywhere;
+}
+
+/* 行内帮助文字。 */
+.inline-help {
+  /* 收紧顶部间距。 */
+  margin: -8px 0 14px;
+  /* 小字号说明。 */
+  font-size: 12px;
+  /* 提升可读性。 */
+  line-height: 1.6;
+  /* 柔和文字色。 */
+  color: var(--text-soft);
+}
+
+/* 常用路径历史区域。 */
+.path-history {
+  /* 与下方复选项保持间距。 */
+  margin: -4px 0 14px;
+  /* 横向排列历史项。 */
+  display: flex;
+  /* 允许换行。 */
+  flex-wrap: wrap;
+  /* 控制项间距。 */
+  gap: 8px;
+}
+
+/* 没有历史时隐藏整个区域。 */
+.path-history:empty {
+  /* 不占布局空间。 */
+  display: none;
+}
+
+/* 单个历史路径胶囊。 */
+.path-history-item {
+  /* 使用内联弹性布局。 */
+  display: inline-flex;
+  /* 垂直居中。 */
+  align-items: center;
+  /* 限制最大宽度，避免长路径撑破面板。 */
+  max-width: 100%;
+  /* 背景与幽灵按钮接近。 */
+  background: rgba(255, 255, 255, 0.04);
+  /* 边框。 */
+  border: 1px solid var(--line);
+  /* 圆角。 */
+  border-radius: 999px;
+  /* 裁切溢出内容。 */
+  overflow: hidden;
+}
+
+/* 历史路径填入按钮。 */
+.path-history-use {
+  /* 去掉默认按钮样式。 */
+  border: none;
+  /* 背景透明。 */
+  background: transparent;
+  /* 使用主文字色。 */
+  color: var(--text-main);
+  /* 内边距。 */
+  padding: 7px 10px 7px 12px;
+  /* 字号。 */
+  font-size: 12px;
+  /* 鼠标手型。 */
+  cursor: pointer;
+  /* 防止长路径撑破。 */
+  min-width: 0;
+  /* 文本左对齐。 */
+  text-align: left;
+  /* 单行展示。 */
+  white-space: nowrap;
+  /* 超出省略。 */
+  overflow: hidden;
+  /* 显示省略号。 */
+  text-overflow: ellipsis;
+}
+
+/* 历史路径删除按钮。 */
+.path-history-delete {
+  /* 去掉默认按钮样式。 */
+  border: none;
+  /* 左侧边界。 */
+  border-left: 1px solid var(--line);
+  /* 背景透明。 */
+  background: transparent;
+  /* 使用柔和文字色。 */
+  color: var(--text-soft);
+  /* 固定大小，避免布局跳动。 */
+  width: 28px;
+  height: 28px;
+  /* 鼠标手型。 */
+  cursor: pointer;
+  /* 字重。 */
+  font-weight: 800;
+}
+
+/* 历史按钮悬停。 */
+.path-history-use:hover,
+.path-history-delete:hover {
+  /* 提亮背景。 */
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* 复选框行。 */
+.checkbox-row {
+  /* 使用弹性布局方便对齐。 */
+  display: flex;
+  /* 让控件和文本垂直居中。 */
+  align-items: center;
+  /* 设置间距。 */
+  gap: 10px;
+  /* 设置行间距。 */
+  margin-top: 10px;
+  /* 光标变成手型。 */
+  cursor: pointer;
+  /* 字号。 */
+  font-size: 14px;
+}
+
+/* 统计区的网格。 */
+.stats-grid {
+  /* 使用三列布局。 */
+  display: grid;
+  /* 定义三列。 */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* 设置间距。 */
+  gap: 12px;
+}
+
+/* 单个统计盒子。 */
+.stat-box {
+  /* 背景略浅。 */
+  background: #0f1727;
+  /* 边框。 */
+  border: 1px solid var(--line);
+  /* 圆角。 */
+  border-radius: 16px;
+  /* 内边距。 */
+  padding: 16px;
+  /* 文本居中。 */
+  text-align: center;
+}
+
+/* 统计数值。 */
+.stat-value {
+  /* 使用更大的字号。 */
+  font-size: 28px;
+  /* 强调字重。 */
+  font-weight: 800;
+}
+
+/* 统计标签。 */
+.stat-label {
+  /* 上边距。 */
+  margin-top: 6px;
+  /* 使用较小字号。 */
+  font-size: 12px;
+  /* 使用柔和颜色。 */
+  color: var(--text-soft);
+}
+
+/* 状态提示条。 */
+.status-banner {
+  /* 与上方统计区留白。 */
+  margin: 14px 0 0;
+  /* 内边距。 */
+  padding: 12px 14px;
+  /* 背景色。 */
+  background: rgba(125, 211, 252, 0.08);
+  /* 边框。 */
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  /* 圆角。 */
+  border-radius: 14px;
+  /* 字号。 */
+  font-size: 13px;
+  /* 行高。 */
+  line-height: 1.6;
+  /* 使用更亮的蓝色。 */
+  color: #c4e9ff;
+}
+
+
+
+/* 四列统计区专用布局。 */
+.stats-grid-four {
+  /* 优先使用四列布局。 */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* 配置说明文字。 */
+.option-help {
+  /* 与上方控件拉开距离。 */
+  margin: 14px 0 0;
+  /* 使用更小字号。 */
+  font-size: 12px;
+  /* 提升行高。 */
+  line-height: 1.7;
+  /* 使用柔和颜色。 */
+  color: var(--text-soft);
+}
+
+/* 配置说明中的代码文本。 */
+.option-help code {
+  /* 使用轻微深色底。 */
+  background: rgba(255, 255, 255, 0.06);
+  /* 设置圆角。 */
+  border-radius: 8px;
+  /* 设置内边距。 */
+  padding: 2px 6px;
+}
+
+/* 错误状态的横幅颜色。 */
+.status-banner.is-error {
+  /* 使用偏红的背景。 */
+  background: rgba(248, 113, 113, 0.1);
+  /* 使用偏红边框。 */
+  border-color: rgba(248, 113, 113, 0.24);
+  /* 使用浅红文字。 */
+  color: #fecaca;
+}
+
+/* 列表工具栏。 */
+.list-toolbar {
+  /* 使用弹性布局。 */
+  display: flex;
+  /* 两端分布。 */
+  justify-content: space-between;
+  /* 允许窄屏时换行。 */
+  flex-wrap: wrap;
+  /* 元素垂直居中。 */
+  align-items: flex-end;
+  /* 行列间距。 */
+  gap: 14px;
+}
+
+/* 工具栏说明文字。 */
+.toolbar-subtitle {
+  /* 去掉默认外边距。 */
+  margin: 6px 0 0;
+  /* 使用辅助色。 */
+  color: var(--text-soft);
+  /* 字号。 */
+  font-size: 13px;
+  /* 行高。 */
+  line-height: 1.6;
+}
+
+/* 工具栏按钮容器。 */
+.toolbar-buttons {
+  /* 横向布局。 */
+  display: flex;
+  /* 允许换行。 */
+  flex-wrap: wrap;
+  /* 间距。 */
+  gap: 10px;
+}
+
+/* 轮次列表网格。 */
+.round-list {
+  /* 使用网格布局。 */
+  display: grid;
+  /* 自适应列宽，保证卡片不至于太窄。 */
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  /* 卡片之间的间距。 */
+  gap: 16px;
+}
+
+/* 单个轮次卡片。 */
+.round-card {
+  /* 使用两列布局，左边放复选框，右边放内容。 */
+  display: grid;
+  /* 定义左右列宽。 */
+  grid-template-columns: auto minmax(0, 1fr);
+  /* 设置间距。 */
+  gap: 14px;
+  /* 卡片背景。 */
+  background: rgba(17, 24, 39, 0.92);
+  /* 边框。 */
+  border: 1px solid var(--line);
+  /* 圆角。 */
+  border-radius: 20px;
+  /* 内边距。 */
+  padding: 18px;
+  /* 投影。 */
+  box-shadow: var(--shadow);
+}
+
+/* 已选中卡片的高亮效果。 */
+.round-card.is-selected {
+  /* 使用更醒目的边框色。 */
+  border-color: rgba(16, 163, 127, 0.65);
+  /* 加一层轻微辉光。 */
+  box-shadow: 0 0 0 1px rgba(16, 163, 127, 0.2), var(--shadow);
+}
+
+/* 复选框区域布局。 */
+.round-checkbox-wrap {
+  /* 使用纵向布局。 */
+  display: flex;
+  /* 设置方向。 */
+  flex-direction: column;
+  /* 垂直居中。 */
+  align-items: center;
+  /* 统一间距。 */
+  gap: 10px;
+  /* 光标显示为可点击。 */
+  cursor: pointer;
+}
+
+/* 轮次序号样式。 */
+.round-index {
+  /* 使用数字等宽感更强的字号。 */
+  font-size: 12px;
+  /* 设置字重。 */
+  font-weight: 800;
+  /* 使用柔和颜色。 */
+  color: var(--text-soft);
+}
+
+/* 右侧内容区。 */
+.round-content {
+  /* 让内容纵向排列。 */
+  display: flex;
+  /* 方向为竖直。 */
+  flex-direction: column;
+  /* 控制内部间距。 */
+  gap: 10px;
+  /* 防止长文本撑破布局。 */
+  min-width: 0;
+}
+
+/* 轮次标题。 */
+.round-title {
+  /* 去掉默认外边距。 */
+  margin: 0;
+  /* 标题字号。 */
+  font-size: 18px;
+  /* 标题字重。 */
+  font-weight: 800;
+  /* 行高。 */
+  line-height: 1.4;
+  /* 允许长句换行。 */
+  word-break: break-word;
+}
+
+/* 提问和回答预览。 */
+.round-prompt,
+.round-answer {
+  /* 去掉默认外边距。 */
+  margin: 0;
+  /* 设置字号。 */
+  font-size: 14px;
+  /* 提高行高。 */
+  line-height: 1.7;
+  /* 允许长文本正常换行。 */
+  word-break: break-word;
+}
+
+/* 提问预览颜色略亮。 */
+.round-prompt {
+  /* 使用主文字色。 */
+  color: var(--text-main);
+}
+
+/* 回答预览颜色略柔和。 */
+.round-answer {
+  /* 使用较柔和的颜色。 */
+  color: #cbd5e1;
+}
+
+/* 卡片底部元信息。 */
+.round-meta {
+  /* 使用横向布局。 */
+  display: flex;
+  /* 允许换行。 */
+  flex-wrap: wrap;
+  /* 设置间距。 */
+  gap: 8px;
+}
+
+/* 元信息标签。 */
+.round-meta-tag {
+  /* 添加内边距。 */
+  padding: 6px 10px;
+  /* 使用圆角胶囊样式。 */
+  border-radius: 999px;
+  /* 边框。 */
+  border: 1px solid var(--line);
+  /* 背景。 */
+  background: rgba(255, 255, 255, 0.04);
+  /* 字号。 */
+  font-size: 12px;
+  /* 使用辅助色。 */
+  color: var(--text-soft);
+}
+
+/* 空状态样式。 */
+.empty-state {
+  /* 占满一整行。 */
+  grid-column: 1 / -1;
+  /* 背景。 */
+  background: rgba(17, 24, 39, 0.92);
+  /* 边框。 */
+  border: 1px solid var(--line);
+  /* 圆角。 */
+  border-radius: 20px;
+  /* 内边距。 */
+  padding: 24px;
+  /* 行高。 */
+  line-height: 1.8;
+  /* 使用柔和颜色。 */
+  color: var(--text-soft);
+}
+
+/* 窄屏时优化顶部布局。 */
+@media (max-width: 920px) {
+  /* 顶部卡片改成单列。 */
+  .hero-card {
+    /* 让左右区域改成上下排布。 */
+    grid-template-columns: 1fr;
+  }
+
+  /* 右侧按钮区域改为横向且允许换行。 */
+  .hero-actions {
+    /* 改成横向布局。 */
+    flex-direction: row;
+    /* 允许换行。 */
+    flex-wrap: wrap;
+  }
+
+  /* 轮次列表卡片宽度进一步适配。 */
+  .round-list {
+    /* 降低最小列宽，兼顾小屏。 */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* 四列统计在小屏下退回两列。 */
+  .stats-grid-four {
+    /* 避免统计卡片过窄。 */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,151 @@
+/* 让导出的笔记在 Obsidian 里更接近 ChatGPT 的阅读观感。 */
+
+/* 用户消息使用更偏绿色的气泡风格。 */
+.callout[data-callout="user"] {
+  /* 定义左侧强调色。 */
+  --callout-color: 16, 163, 127;
+  /* 使用轻微绿色背景。 */
+  background: linear-gradient(180deg, rgba(16, 163, 127, 0.12), rgba(16, 163, 127, 0.08));
+  /* 增加一层更明确的边框。 */
+  border: 1px solid rgba(16, 163, 127, 0.24);
+  /* 模拟网页卡片的圆角。 */
+  border-radius: 18px;
+  /* 给整块消息更多留白。 */
+  padding: 0.35rem 0.45rem;
+  /* 提供柔和阴影。 */
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.08);
+}
+
+/* 助手消息使用偏深灰的块状样式。 */
+.callout[data-callout="assistant"] {
+  /* 定义中性色调用颜色。 */
+  --callout-color: 120, 120, 128;
+  /* 使用更接近 ChatGPT 的灰色背景。 */
+  background: linear-gradient(180deg, rgba(127, 127, 138, 0.08), rgba(127, 127, 138, 0.05));
+  /* 增加浅边框。 */
+  border: 1px solid rgba(127, 127, 138, 0.18);
+  /* 使用更圆润的边角。 */
+  border-radius: 18px;
+  /* 给块内容提供舒适内边距。 */
+  padding: 0.35rem 0.45rem;
+  /* 添加柔和阴影。 */
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.06);
+}
+
+/* 来源说明块略微弱化视觉权重。 */
+.callout[data-callout="quote"] {
+  /* 使用透明背景增强次级信息感。 */
+  background: rgba(127, 127, 138, 0.04);
+  /* 增加轻边框。 */
+  border-radius: 16px;
+}
+
+/* 让 callout 标题更像网页中的消息头。 */
+.callout .callout-title {
+  /* 加强字重。 */
+  font-weight: 700;
+  /* 稍微提升字号。 */
+  font-size: 0.98rem;
+}
+
+/* 收紧 callout 正文与标题之间的距离。 */
+.callout .callout-content {
+  /* 顶部留白适度减小。 */
+  margin-top: 0.35rem;
+}
+
+/* 统一消息正文中的段落间距。 */
+.callout .callout-content > *:first-child {
+  /* 去掉第一块顶部额外空隙。 */
+  margin-top: 0;
+}
+
+/* 统一消息正文中的尾部间距。 */
+.callout .callout-content > *:last-child {
+  /* 去掉最后一块底部额外空隙。 */
+  margin-bottom: 0;
+}
+
+/* 让代码块在消息卡片里更像网页中的代码片段。 */
+.callout pre {
+  /* 使用较深背景。 */
+  background: rgba(0, 0, 0, 0.18);
+  /* 给代码块更大的圆角。 */
+  border-radius: 16px;
+  /* 增加微弱边框。 */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  /* 给代码块加内阴影式层次。 */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+/* 让内联代码更清晰。 */
+.callout code {
+  /* 使用轻微背景。 */
+  background: rgba(127, 127, 138, 0.12);
+  /* 增加圆角。 */
+  border-radius: 8px;
+  /* 设置水平留白。 */
+  padding: 0.12rem 0.35rem;
+}
+
+/* 调整表格在消息中的显示效果。 */
+.callout table {
+  /* 铺满可用宽度。 */
+  width: 100%;
+  /* 使用圆角裁切。 */
+  overflow: hidden;
+  /* 增加边框层次。 */
+  border: 1px solid var(--background-modifier-border);
+  /* 使用卡片式圆角。 */
+  border-radius: 14px;
+}
+
+/* 让图片嵌入在消息中更接近网页卡片。 */
+.callout .internal-embed.image-embed {
+  /* 允许多图并排显示。 */
+  display: inline-flex;
+  /* 让相邻图片保留右侧空隙。 */
+  margin: 0.55rem 0.7rem 0.35rem 0;
+  /* 使用圆角裁切。 */
+  border-radius: 16px;
+  /* 隐藏溢出的边角。 */
+  overflow: hidden;
+  /* 提升图片的卡片感。 */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  /* 使用边框增强分离感。 */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* 避免过宽。 */
+  max-width: min(100%, 920px);
+  /* 垂直对齐顶端，方便多图同行排列。 */
+  vertical-align: top;
+}
+
+/* 让图片本体尽量按比例展示。 */
+.callout .internal-embed.image-embed img {
+  /* 阻止图片底部出现额外空白。 */
+  display: block;
+  /* 限制最大宽度。 */
+  max-width: 100%;
+  /* 保持自适应高度。 */
+  height: auto;
+}
+
+/* 让多图在窄屏下也不会挤爆版面。 */
+.markdown-preview-view .callout .internal-embed.image-embed,
+.markdown-source-view.mod-cm6 .callout .internal-embed.image-embed {
+  /* 允许自动换行后的宽度约束。 */
+  max-width: min(100%, 46rem);
+}
+
+/* 统一标题层级与正文宽度的观感。 */
+.markdown-preview-view h1 {
+  /* 强化一级标题。 */
+  font-weight: 800;
+}
+
+/* 让导出笔记整体阅读宽度更舒服。 */
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 {
+  /* 稍微增加行高。 */
+  line-height: 1.75;
+}

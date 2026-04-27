@@ -1,0 +1,95 @@
+/* 让弹窗本身拥有稳定的基础宽度，避免控件过窄。 */
+body {
+  /* 去掉浏览器默认外边距，让版面更可控。 */
+  margin: 0;
+  /* 设置系统字体栈，保证中文显示更自然。 */
+  font-family: Inter, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* 使用深色背景，和 ChatGPT 的视觉风格更接近。 */
+  background: #111827;
+  /* 设定文本颜色，提高整体对比度。 */
+  color: #f9fafb;
+}
+
+/* 负责整个弹窗的留白和排版。 */
+.popup-shell {
+  /* 给弹窗一个适中的宽度，避免内容挤压。 */
+  width: 320px;
+  /* 提供舒适的内边距。 */
+  padding: 18px;
+  /* 使用纵向布局。 */
+  display: flex;
+  /* 指定主轴方向为竖直。 */
+  flex-direction: column;
+  /* 控制元素之间的间距。 */
+  gap: 12px;
+  /* 让盒模型计算更直观。 */
+  box-sizing: border-box;
+}
+
+/* 主标题样式。 */
+.popup-title {
+  /* 去掉默认外边距。 */
+  margin: 0;
+  /* 设置标题字号。 */
+  font-size: 18px;
+  /* 强化标题字重。 */
+  font-weight: 700;
+}
+
+/* 说明文字样式。 */
+.popup-text,
+.hint-text,
+.status-text {
+  /* 去掉默认外边距。 */
+  margin: 0;
+  /* 使用更易读的小段落字号。 */
+  font-size: 13px;
+  /* 提升行高。 */
+  line-height: 1.6;
+}
+
+/* 次要提示文字降低对比度。 */
+.hint-text {
+  /* 用较浅颜色表达辅助信息。 */
+  color: #9ca3af;
+}
+
+/* 状态文字的最小高度，避免跳动。 */
+.status-text {
+  /* 保留一行空间。 */
+  min-height: 20px;
+  /* 使用稍亮的强调色。 */
+  color: #93c5fd;
+}
+
+/* 主按钮样式。 */
+.primary-button {
+  /* 去掉默认按钮边框。 */
+  border: none;
+  /* 设置圆角，让按钮更现代。 */
+  border-radius: 12px;
+  /* 设置按钮内边距。 */
+  padding: 12px 14px;
+  /* 使用品牌绿色。 */
+  background: #10a37f;
+  /* 提高按钮文字对比。 */
+  color: #ffffff;
+  /* 强化按钮字重。 */
+  font-weight: 700;
+  /* 鼠标悬停时显示可点击。 */
+  cursor: pointer;
+}
+
+/* 鼠标悬停时稍微提亮。 */
+.primary-button:hover {
+  /* 使用略亮的背景色。 */
+  background: #12b48c;
+}
+
+/* 按钮禁用状态。 */
+.primary-button:disabled {
+  /* 降低透明度表示不可用。 */
+  opacity: 0.6;
+  /* 禁止鼠标点击样式。 */
+  cursor: not-allowed;
+}
