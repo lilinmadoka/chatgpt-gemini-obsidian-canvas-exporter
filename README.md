@@ -9,7 +9,7 @@
 
 This Chrome extension turns ChatGPT and Google Gemini conversations into Obsidian-ready Markdown notes, Canvas maps, image assets, and an optional reading-style CSS snippet.
 
-## 一句话 / In One Line
+## 简单概述 / In One Line
 
 选择你想保存的对话轮次，一次导出为 Markdown、JSON Canvas、图片附件和 Obsidian 样式，让 AI 对话从网页临时记录变成可维护的知识结构。
 
